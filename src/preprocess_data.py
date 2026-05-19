@@ -5,9 +5,9 @@ from sklearn.model_selection import train_test_split
 
 def transform_jpg_to_dataset(src_data):
     transform = transforms.Compose([
-        transforms.Resize((48, 48)),
-        transforms.Grayscale(),
-        transforms.ToTensor()
+        transforms.Resize((48, 48)), #nice square power of 2
+        transforms.Grayscale(), #color doesn't matter for expression
+        transforms.ToTensor() #scales images to [0,1]
     ])
     dataset = datasets.ImageFolder(root = src_data, transform = transform)
 
@@ -28,26 +28,27 @@ def save_dataset(dataset, destination):
         "X": X,
         "y": y,
         "class_to_idx": dataset.class_to_idx
-    }
+        }
     torch.save(data, destination)
     print(f"saved dataset of length {N} to {destination}")
 
-def load_dataset(source):
-    return torch.load(source)
-
 def create_train_test_split(data, destination):
     X = data["X"]
-    y = data["y"]
+    y = data["y"].long()
     class_to_idx = data["class_to_idx"]
     X_train, X_test, y_train, y_test = train_test_split(X, y, 
                     test_size = 0.2, random_state = 67, stratify = y)
-    data = {
-        "X_train": X_train,
-        "X_test": X_test,
-        "y_train": y_train,
-        "y_test": y_test,
-        "class_to_idx": data["class_to_idx"]
+    dataset = {
+        "train": {
+            "X": X_train,
+            "y": y_train
+            },
+        "test": {
+            "X": X_test,
+            "y": y_test
+            },
+        "class_to_idx": class_to_idx
     }
 
-    torch.save(data, destination)
+    torch.save(dataset, destination)
     print(f"saved train/test split to {destination}")

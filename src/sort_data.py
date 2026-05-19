@@ -3,11 +3,9 @@ import shutil
 
 def sort_raw_data_by_expression(source, destination):
     os.makedirs(destination, exist_ok = True)
-
     valid_extensions = ('jpg', 'jpeg')
 
     for person in os.listdir(source):
-
         person_path = os.path.join(source, person)
         if not os.path.isdir(person_path): continue
 
