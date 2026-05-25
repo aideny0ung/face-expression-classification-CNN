@@ -3,7 +3,7 @@ Classify facial expression with a CNN and pytorch.
 This project was for the 2026 data-dive with the Data Science club at UIUC and I had everything in a personal directory. I created this repo to show off my work.
 
 
-Please look at the slides which I included in the repo. I go over my entire data-cleaning pipeline as well as CNN architecture.
+Please look at the slides (datadive26slides.pdf) which I included in the repo. I go over my entire data-cleaning pipeline as well as CNN architecture.
 
 
 A quick summary of it:
