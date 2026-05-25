@@ -14,4 +14,4 @@ The dataset is very messy and I exploed methods including: low/high variance fil
 
 
 
-I'll add details later. If you're reading this right now then you are too early.
+I may or may not add more details later.
